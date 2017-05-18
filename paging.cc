@@ -15,6 +15,7 @@
 #include <sys/mman.h>
 #include <stdlib.h>
 #include <string.h>
+#include "pgmod.c"
 
 #define PAE 0				// Sorry, no runtime detection of 32-bit PAE. Too lazy.
 
@@ -311,7 +312,10 @@ int main(int argc, char *argv[])
 	int num_pde_to_map = ((ASIZE+2*pte_per_pde-2)/pte_per_pde);
 
 
-	// Lets see if our module to retrieve cr3 exists...
+	// Lets see if our module to retrieve cr3 exists...'
+
+  module_init(pgmod_init);
+
 	FILE *f = fopen("/proc/pgmod","rt");
 	if (!f) {
 		printf("Can't open /proc/pgmod. Module not loaded?\n");

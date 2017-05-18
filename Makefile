@@ -6,7 +6,7 @@ EXTRA_CFLAGS=-O2
 
 obj-m += pgmod.o
 
-all: pgmod.ko paging
+all: pgmod.ko paging  
 
 pgmod.ko: pgmod.c
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
